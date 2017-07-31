@@ -1,18 +1,11 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+*.suo
+/.vs/Disruptor.ReadModel.Tests/v15
 /Disruptor.ReadModel.Tests/bin/Debug
 /Disruptor.ReadModel.Tests/obj/Debug
 /Disruptor.ReadModel.Tests/obj/Debug
-/Disruptor.ReadModel.Tests/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
-/Disruptor.ReadModel.Tests/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
-/Disruptor.ReadModel.Tests/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
-/Disruptor.ReadModel.Tests/obj/Debug/Disruptor.ReadModel.Tests.pdb
-/Disruptor.ReadModel.Tests/obj/Debug/Disruptor.ReadModel.Tests.exe
-/Disruptor.ReadModel.Tests/obj/Debug/Disruptor.ReadModel.Tests.csprojResolveAssemblyReference.cache
-/Disruptor.ReadModel.Tests/obj/Debug/Disruptor.ReadModel.Tests.csproj.FileListAbsolute.txt
-/Disruptor.ReadModel.Tests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-/Disruptor.ReadModel.Tests/obj/Debug/CoreCompileInputs.cache
-/.vs/Disruptor.ReadModel.Tests/v15
-*.suo
+/Disruptor.ReadModel.Host/bin/Debug
+/Disruptor.ReadModel.Host/obj/Debug
+/packages

@@ -33,6 +33,7 @@ namespace Disruptor.ReadModel.Tests.Domain.CommandHandlers
         public async Task HandleAsync(AddItemToCardCommand message)
         {
             var order = await _orderRepository.GetById(message.OrderId);
+            order.AddItemToCard(message.OrderId, message.Card);
             await _orderRepository.Save(order);
         }
     }

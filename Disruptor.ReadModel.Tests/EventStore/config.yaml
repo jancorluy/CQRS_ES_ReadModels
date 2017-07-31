@@ -1,0 +1,5 @@
+﻿---
+StatsPeriodSec: 1200
+Db: "./ESData"
+RunProjections: ALL
+--- 

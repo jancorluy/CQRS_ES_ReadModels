@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ using Disruptor.ReadModel.Tests.Domain.CommandHandlers;
 using Disruptor.ReadModel.Tests.Infrastructure;
 using Disruptor.ReadModel.Tests.Messages;
 using EventStore.ClientAPI;
-using EventStore.ClientAPI.Embedded;
 using EventStore = Disruptor.ReadModel.Tests.Infrastructure.EventStore;
 
 namespace Disruptor.ReadModel.Tests
@@ -20,30 +20,26 @@ namespace Disruptor.ReadModel.Tests
     {
         static void Main(string[] args)
         {
-            var nodeBuilder = EmbeddedVNodeBuilder.AsSingleNode()
-                .OnDefaultEndpoints()
-                .RunInMemory();
-            var node = nodeBuilder.Build();
-            node.StartAndWaitUntilReady().Wait();
-
-            var embeddedConn = EmbeddedEventStoreConnection.Create(node);
-            embeddedConn.ConnectAsync().Wait();
+            EventStoreLoader.SetupEventStore(EventStoreLoader.StartConflictOption.Connect);
+            var connection = EventStoreLoader.Connection;
             
             var bus = new FakeBus();
             var queue = new ReadmodelPublisher();
            
             var orderCreatedHandler = new CreateOrderCommandHandler(
                 new Repository<Order>(
-                new Disruptor.ReadModel.Tests.Infrastructure.EventStore(embeddedConn, queue)));
+                new Disruptor.ReadModel.Tests.Infrastructure.EventStore(connection, queue)));
             var orderItemAddedHandler = new AddItemToOrderCommandHandler(
                 new Repository<Order>(
-                    new Disruptor.ReadModel.Tests.Infrastructure.EventStore(embeddedConn, queue)));
+                    new Disruptor.ReadModel.Tests.Infrastructure.EventStore(connection, queue)));
 
             bus.RegisterAsyncHandler<CreateOrderCommand>(orderCreatedHandler.HandleAsync);
             bus.RegisterAsyncHandler<AddItemToCardCommand>(orderItemAddedHandler.HandleAsync);
 
 
             TestSendCommandAndFillupReadmodel(queue,bus);
+
+            EventStoreLoader.TeardownEventStore(false, true);
         }
 
         private static void TestSendCommandAndFillupReadmodel(ReadmodelPublisher queue,
