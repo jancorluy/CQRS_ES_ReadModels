@@ -16,14 +16,24 @@ namespace Disruptor.ReadModel.Tests.MessageHandlers
             if (this.CanProcessEvent(data.Event))
             {
                 dynamic handler = Activator.CreateInstance(this.GetType());
-            
+
                 dynamic @event = data.Event;
-                if (!handler.IsThisMessageAlreadyHandled(data))
+
+                try
                 {
-                    handler.Handle(@event);
+                    if (!handler.IsThisMessageAlreadyHandled(data))
+                    {
+                        handler.Handle(@event);
+                    }
+
                     handler.StorePosition(data);
                 }
+                catch (Exception e)
+                {
+                    _logger.Error(e);
+                }
             }
+
         }
 
         private void StorePosition(ReadModelEventStream data)
