@@ -44,8 +44,21 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Polly, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.5.3.0\lib\net45\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.DataTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.DataTypes.1.0.0.1\lib\net45\StackExchange.Redis.DataTypes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,11 +70,22 @@
     <Compile Include="Domain\Aggregate.cs" />
     <Compile Include="Domain\CommandHandlers\CreateOrderCommandHandler.cs" />
     <Compile Include="Domain\Order.cs" />
+    <Compile Include="Infrastructure\Consumers\ReadModelConsumer.cs" />
+    <Compile Include="Infrastructure\DroppedSubscription.cs" />
     <Compile Include="Infrastructure\EventStoreLoader.cs" />
     <Compile Include="Extensions\InfrastructureCrap.DontBotherReadingItsNotImportant.cs" />
     <Compile Include="Infrastructure\EventStoreRepository.cs" />
     <Compile Include="Infrastructure\FakeBus.cs" />
+    <Compile Include="Infrastructure\FaultHandling\DroppedSubscriptionPolicy.cs" />
+    <Compile Include="Infrastructure\FaultHandling\Retries.cs" />
+    <Compile Include="Infrastructure\FaultHandling\RetryExtensions.cs" />
+    <Compile Include="Infrastructure\FaultHandling\RetryPolicy.cs" />
+    <Compile Include="Infrastructure\FaultHandling\RetryType.cs" />
     <Compile Include="Infrastructure\ReadmodelPublisher.cs" />
+    <Compile Include="Infrastructure\Consumers\StreamConsumer.cs" />
+    <Compile Include="Infrastructure\Repositories\RedisRepository.cs" />
+    <Compile Include="Infrastructure\Subscriptions\ReadModelSubscription.cs" />
+    <Compile Include="Infrastructure\Subscriptions\Subscription.cs" />
     <Compile Include="MessageHandlers\IProjectionViewHandler.cs" />
     <Compile Include="MessageHandlers\OrderListViewHandler.cs" />
     <Compile Include="MessageHandlers\OrderViewHandler.cs" />

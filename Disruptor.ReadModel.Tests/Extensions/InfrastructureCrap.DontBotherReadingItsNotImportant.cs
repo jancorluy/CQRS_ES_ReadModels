@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using Disruptor.ReadModel.Tests.Messages;
@@ -11,7 +10,7 @@ using EventStore.ClientAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace SimpleCQRS
+namespace Disruptor.ReadModel.Tests.Extensions
 {
 
     //FROM http://blogs.msdn.com/b/davidebb/archive/2010/01/18/use-c-4-0-dynamic-to-drastically-simplify-your-private-reflection-code.aspx

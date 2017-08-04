@@ -18,7 +18,7 @@ namespace Disruptor.ReadModel.Tests.MessageHandlers
 
         public void Handle(OrderItemAddedToCardEvent tEvent)
         {
-            Console.WriteLine($"order listview handler: order created for order {tEvent.OrderId} on thread {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"order listview handler: order item added for order {tEvent.OrderId} on thread {System.Threading.Thread.CurrentThread.ManagedThreadId}");
         }
 
         protected override bool CanProcessEvent(object dataEvent)

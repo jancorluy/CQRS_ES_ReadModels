@@ -25,7 +25,11 @@ namespace Disruptor.ReadModel.Tests
             
             var bus = new FakeBus();
             var queue = new ReadmodelPublisher();
-           
+
+          
+
+
+
             var orderCreatedHandler = new CreateOrderCommandHandler(
                 new Repository<Order>(
                 new Disruptor.ReadModel.Tests.Infrastructure.EventStore(connection, queue)));

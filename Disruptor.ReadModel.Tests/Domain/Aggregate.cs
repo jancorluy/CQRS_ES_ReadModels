@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Disruptor.ReadModel.Tests.Extensions;
 using Disruptor.ReadModel.Tests.Messages;
-using SimpleCQRS;
 
 namespace Disruptor.ReadModel.Tests.Domain
 {

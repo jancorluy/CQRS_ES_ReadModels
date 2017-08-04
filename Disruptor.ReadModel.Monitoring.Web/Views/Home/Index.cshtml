@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Disruptor.ReadModel.Monitoring.Web.Models.ReadModelState>
+
+@{
+    ViewBag.Title = "title";
+    Layout = null;
+}
+
+<h2>Readmodel handler state</h2>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>ReadmodelType</th>
+            <th>CommitPosition</th>
+            <th>PreparePosition</th>
+            <th>LastComittedPosition</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var rm in Model)
+        {
+            <tr>
+                <td>@rm.ReadmodelType</td>
+                <td>@rm.CommitPosition</td>
+                <td>@rm.PreparePosition</td>
+                <td>@rm.LastComittedPosition.ToString("dd/MM/yyyy hh:mm:ss")</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    setTimeout(function () {
+        window.location.reload();
+    }, 5000);
+
+</script>

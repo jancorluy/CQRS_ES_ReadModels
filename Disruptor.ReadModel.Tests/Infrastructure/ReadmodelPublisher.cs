@@ -6,10 +6,17 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Disruptor.Dsl;
+using Disruptor.ReadModel.Tests.Extensions;
 using Disruptor.ReadModel.Tests.MessageHandlers;
+using EventStore.ClientAPI;
 
 namespace Disruptor.ReadModel.Tests.Infrastructure
 {
+    public interface IEventDispatcher
+    {
+        Task Dispatch(ResolvedEvent @event);
+    }
+
     public class ReadModelEventStream
     {
         public object Event { get; set; }
@@ -32,7 +39,7 @@ namespace Disruptor.ReadModel.Tests.Infrastructure
         }
     }
 
-    public class ReadmodelPublisher
+    public class ReadmodelPublisher : IEventDispatcher
     {
         private int ringbufferSize = (int) Math.Pow(128, 2);
 
@@ -49,6 +56,7 @@ namespace Disruptor.ReadModel.Tests.Infrastructure
                 TaskScheduler.Current, ProducerType.Multi, new BusySpinWaitStrategy());
 
             var ringBufferEventHandlers = domainEventsAssembly.GetRingBufferEventHandlersFromAssembly();
+           
             disruptor.HandleEventsWith(ringBufferEventHandlers.ToArray());
     
             ringBuffer = disruptor.Start();
@@ -70,6 +78,13 @@ namespace Disruptor.ReadModel.Tests.Infrastructure
                 entry.Event = @event;
                 return entry;
             });
+        }
+
+        public Task Dispatch(ResolvedEvent @event)
+        {
+            var e = @event.DeserializeEvent();
+            this.Send(e, @event.OriginalPosition.Value.CommitPosition, @event.OriginalPosition.Value.PreparePosition);
+            return Task.FromResult(0);
         }
     }
 }

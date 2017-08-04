@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Disruptor.ReadModel.Tests.Domain;
+using Disruptor.ReadModel.Tests.Extensions;
 using Disruptor.ReadModel.Tests.Messages;
 using EventStore.ClientAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SimpleCQRS;
 
 namespace Disruptor.ReadModel.Tests.Infrastructure
 {

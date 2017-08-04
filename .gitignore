@@ -2,10 +2,16 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 *.suo
-/.vs/Disruptor.ReadModel.Tests/v15
+/.vs
 /Disruptor.ReadModel.Tests/bin/Debug
 /Disruptor.ReadModel.Tests/obj/Debug
-/Disruptor.ReadModel.Tests/obj/Debug
+/Disruptor.ReadModel.Tests/bin/Release
+/Disruptor.ReadModel.Tests/obj/Release
 /Disruptor.ReadModel.Host/bin/Debug
 /Disruptor.ReadModel.Host/obj/Debug
-/packages
+/Disruptor.ReadModel.Host/bin/Release
+/Disruptor.ReadModel.Host/obj/Release
+/Disruptor.ReadModel.Monitoring.Web/bin
+/Disruptor.ReadModel.Monitoring.Web/obj/Debug
+/Disruptor.ReadModel.Monitoring.Web/obj/Release
+packages
